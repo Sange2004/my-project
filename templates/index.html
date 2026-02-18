@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MFCC & Speech Recognition</title>
+</head>
+<body>
+    <h1>Upload a .wav, .flac, .mp3, or .ogg File</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".wav,.flac,.mp3,.ogg">
+        <input type="submit" value="Upload and Process">
+    </form>
+
+    {% if mfcc %}
+        <h2>MFCC Features:</h2>
+        <pre>{{ mfcc }}</pre>
+
+        {% if img_filename %}
+            <h2>MFCC Plot:</h2>
+            <img src="{{ url_for('static', filename=img_filename) }}" alt="MFCC Plot">
+        {% endif %}
+
+        {% if text %}
+            <h2>Recognized Text:</h2>
+            <p>{{ text }}</p>
+        {% endif %}
+
+        {% if prediction %}
+            <h2>Prediction:</h2>
+            <p>{{ prediction }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
